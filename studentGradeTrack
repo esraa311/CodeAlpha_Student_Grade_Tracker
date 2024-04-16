@@ -1,0 +1,50 @@
+package students.grades;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class StudentsGrades {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        ArrayList<Double> gradesList = new ArrayList<>();
+        int numberOfStudents;
+
+        do {
+            System.out.println("Please enter the number of students:");
+            numberOfStudents = in.nextInt();
+            if (numberOfStudents <= 0) {
+                System.out.println("Please enter a valid number of students (should be greater than 0).");
+            }
+        } while (numberOfStudents <= 0);
+
+        for (int i = 0; i < numberOfStudents; i++) {
+            System.out.println("Enter the grade for student " + (i + 1) + ":");
+            double grade = in.nextDouble();
+            if (grade < 0 || grade > 100) {
+                System.out.println("Invalid grade. Grade should be between 0 and 100.");
+                i--;
+            } else {
+                gradesList.add(grade);
+            }
+        }
+
+        double sum = 0;
+        double max = Double.MIN_VALUE;
+        double min = Double.MAX_VALUE;
+
+        for (double g : gradesList) {
+            sum += g;
+            if (g > max) {
+                max = g;
+            }
+            if (g < min) {
+                min = g;
+            }
+        }
+
+        double average = sum / gradesList.size();
+
+        System.out.println("Average Grade: " + average);
+        System.out.println("Highest Score: " + max);
+        System.out.println("Lowest Score: " + min);
+        System.out.println("Students'Graged:"+gradesList);
+    }
+}
